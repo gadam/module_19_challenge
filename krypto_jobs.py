@@ -30,7 +30,11 @@ from dataclasses import dataclass
 from typing import Any, List
 from web3 import Web3
 
+# Using my computer's `hostname` instead of `localhost` because I use WSL2 as my
+#  main development environment whilst `Ganache` is installed as a `Windows` application.
+#  This is the only way that I can connect to my `Ganache` installation.
 w3 = Web3(Web3.HTTPProvider("HTTP://Fireball.local:7545"))
+
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the KryptoJobs2Go Application
@@ -264,11 +268,11 @@ st.sidebar.markdown("## Total Wage in Ether")
 # Calculate total `wage` for the candidate by multiplying the candidate’s hourly
 # rate from the candidate database (`candidate_database[person][3]`) by the
 # value of the `hours` variable
-# YOUR CODE HERE
+wage = candidate_database[person][3] * hours
 
 # @TODO
 # Write the `wage` calculation to the Streamlit sidebar
-# YOUR CODE HERE
+st.sidebar.write(wage)
 
 ##########################################
 # Step 2 - Part 2:

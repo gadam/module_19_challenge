@@ -30,7 +30,7 @@ from dataclasses import dataclass
 from typing import Any, List
 from web3 import Web3
 
-w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+w3 = Web3(Web3.HTTPProvider("HTTP://Fireball.local:7545"))
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the KryptoJobs2Go Application
@@ -80,7 +80,7 @@ w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
 # @TODO:
 # From `crypto_wallet.py import the functions generate_account, get_balance,
 #  and send_transaction
-# YOUR CODE HERE
+from crypto_wallet import generate_account, get_balance, send_transaction
 
 ################################################################################
 # KryptoJobs2Go Candidate Information
@@ -156,7 +156,7 @@ st.sidebar.markdown("## Client Account Address and Ethernet Balance in Ether")
 
 # @TODO:
 #  Call the `generate_account` function and save it as the variable `account`
-# YOUR CODE HERE
+account = generate_account()
 
 ##########################################
 
@@ -172,11 +172,12 @@ st.sidebar.write(account.address)
 # @TODO
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
-# YOUR CODE HERE
+balance = get_balance(w3, account.address)
+st.sidebar.write(balance)
 
 ##########################################
 
-# Create a select box to chose a FinTech Hire candidate
+# Create a select box to choose a FinTech Hire candidate
 person = st.sidebar.selectbox("Select a Person", people)
 
 # Create a input field to record the number of hours the candidate worked
@@ -202,7 +203,7 @@ candidate_address = candidate_database[person][1]
 # Write the inTech Finder candidate's Ethereum Address to the sidebar
 st.sidebar.write(candidate_address)
 
-# Write the KryptoJobs2Go candidate's name to the sidebar
+# Write the KryptoJobs2Go candidate's Ethereum address to the sidebar
 
 st.sidebar.markdown("## Total Wage in Ether")
 
